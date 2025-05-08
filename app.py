@@ -37,9 +37,9 @@ if st.button("Submit"):
     input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','Lymphocyte','Operationtime','FDP']] = scaler.transform(input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','Lymphocyte','Operationtime','FDP']])
 
 
-calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
-calibrated_clf.fit(X_train, y_train)
-prediction_proba = calibrated_clf.predict_proba(input_numerical)[:, 1]
+    calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
+    calibrated_clf.fit(X_train, y_train)
+    prediction_proba = calibrated_clf.predict_proba(input_numerical)[:, 1]
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
     for prob in target_class_proba_percent:
