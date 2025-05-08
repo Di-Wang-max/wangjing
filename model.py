@@ -11,10 +11,10 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, stratify=y, random_state=123
 )
 scaler = StandardScaler()
-X_train[["Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]] = scaler.fit_transform(X_train[[
-    "Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]])
-X_test[["Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]] = scaler.transform(X_test[[
-    "Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]])
+X_train[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.fit_transform(X_train[[
+    'D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
+X_test[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(X_test[[
+    'D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
 X_train = X_train.reindex(sorted(X_train.columns), axis=1)
 X_test = X_test.reindex(sorted(X_test.columns), axis=1)
 XGB = xgb.XGBClassifier(
