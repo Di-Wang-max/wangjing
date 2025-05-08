@@ -29,8 +29,8 @@ if st.button("Submit"):
     scaler = joblib.load("scaler.pkl")
     
     # Store inputs into dataframe
-    input_numerical = np.array([Age, D3Dimer, D5Dimer, Differentiation,FDP, PLT, PrevWF, Operationtime, Anticoagulation, Lymphocyte, vWFD1,vWFD3]).reshape(1, -1)
-    feature_names  = ["Age", "D3Dimer", "D5Dimer","Differentiation","FDP","PLT","PrevWF","Operationtime","Anticoagulation","Lymphocyte","vWFD1","vWFD3"]
+    input_numerical = np.array([Age, D3Dimer, D5Dimer, Differentiation,FDP, PLT, PrevWF, Operationtime, Anticoagulation, Lymphocyte,vWFD3]).reshape(1, -1)
+    feature_names  = ["Age", "D3Dimer", "D5Dimer","Differentiation","FDP","PLT","PrevWF","Operationtime","Anticoagulation","Lymphocyte","vWFD3"]
     input_numericalyuan = pd.DataFrame(input_numerical, columns=feature_names)
     input_numerical = pd.DataFrame(input_numerical, columns=feature_names)
 
