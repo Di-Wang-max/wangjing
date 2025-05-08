@@ -12,7 +12,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 scaler = StandardScaler()
 X_train[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.fit_transform(X_train[[
-    'D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])X_test[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(X_test[[
+    'D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
+X_test[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(X_test[[
     'D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
 X_train = X_train.reindex(sorted(X_train.columns), axis=1)
 X_test = X_test.reindex(sorted(X_test.columns), axis=1)
