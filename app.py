@@ -34,7 +34,7 @@ if st.button("Submit"):
     input_numericalyuan = pd.DataFrame(input_numerical, columns=feature_names)
     input_numerical = pd.DataFrame(input_numerical, columns=feature_names)
 
-    input_numerical[["Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]] = scaler.transform(input_numerical[["Age", "D3Dimer","D5Dimer","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]])
+    input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
 
 
     calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
