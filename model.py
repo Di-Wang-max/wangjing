@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import xgboost as xgb
 import streamlit as st
+from sklearn.calibration import CalibratedClassifierCV
 data = pd.read_csv("E:/wangjing/model/data.csv", encoding='utf-8')
 X = data.drop(columns=['VTE'])
 y = data['VTE']
@@ -27,9 +28,11 @@ XGB = xgb.XGBClassifier(
         n_estimators=272,
         scale_pos_weight=4.063464588085775,
                random_state=42)
-XGB.fit(X_train, y_train)
+
+calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
+calibrated_clf.fit(X_train, y_train)
 
 import joblib
 
-joblib.dump(XGB, "XGB.pkl")
+joblib.dump(calibrated_clf, "XGB.pkl")
 joblib.dump(scaler, "scaler.pkl")
