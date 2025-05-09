@@ -17,8 +17,8 @@ PrevWF = st.number_input("PrevWF (ng/mL):")
 vWFD3 = st.number_input("vWFD3 (ng/mL):")
 Operationtime = st.number_input("Operation time (min):")
 Anticoagulation = st.selectbox('Anticoagulation', ['No', 'Yes'])
-Differentiation = st.selectbox('Differentiation', ['low',"medium",'high'])
-Differentiationmap = {'low': 0, 'medium': 1, 'high': 2}
+Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
+Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
 Differentiation = Differentiationmap[Differentiation]
 Anticoagulation = 1 if Anticoagulation == 'Yes' else 0
 
