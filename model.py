@@ -29,10 +29,10 @@ XGB = xgb.XGBClassifier(
         scale_pos_weight=4.063464588085775,
                random_state=42)
 XGB.fit(X_train, y_train)
-calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
-calibrated_clf.fit(X_train, y_train)
+calibrated = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
+calibrated.fit(X_train, y_train)
 
 import joblib
-
-joblib.dump(calibrated_clf, "XGB.pkl")
+joblib.dump(XGB, "XGB.pkl")
+joblib.dump(calibrated, "calibrated.pkl")
 joblib.dump(scaler, "scaler.pkl")
