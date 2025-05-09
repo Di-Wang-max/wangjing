@@ -27,7 +27,9 @@ if st.button("Submit"):
     
     # Unpickle classifier
     XGB = joblib.load("XGB.pkl")
+    calibrated = joblib.load("calibrated.pkl")
     scaler = joblib.load("scaler.pkl")
+    
     
     # Store inputs into dataframe
     input_numerical = np.array([Age,Anticoagulation,D3Dimer,D5Dimer,Differentiation,FDP,Lymphocyte,Operationtime,PLT,PrevWF,vWFD3]).reshape(1, -1)
@@ -38,7 +40,7 @@ if st.button("Submit"):
     input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
 
 
-    prediction_proba = XGB.predict_proba(input_numerical)[:, 1]
+    prediction_proba = calibrated.predict_proba(input_numerical)[:, 1]
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
     for prob in prediction_proba:
