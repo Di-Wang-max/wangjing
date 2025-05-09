@@ -28,7 +28,7 @@ XGB = xgb.XGBClassifier(
         n_estimators=272,
         scale_pos_weight=4.063464588085775,
                random_state=42)
-
+XGB.fit(X_train, y_train)
 calibrated_clf = CalibratedClassifierCV(XGB, method="isotonic", cv=10)
 calibrated_clf.fit(X_train, y_train)
 
