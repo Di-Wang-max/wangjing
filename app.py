@@ -38,10 +38,10 @@ if st.button("Submit"):
     input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
 
 
-    prediction_proba = XGB.predict_proba(input_numerical)[:, 1]
+    prediction_proba = calibrated.predict_proba(input_numerical)[:, 1]
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
-    for prob in target_class_proba_percent:
+    for prob in prediction_proba:
         st.markdown(f"**{prob:.3f}%**")
 
   
