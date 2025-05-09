@@ -5,3 +5,4 @@ pandas
 shap
 scikit-learn
 xgboost
+matplotlib
