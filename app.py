@@ -8,15 +8,15 @@ from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
 Age = st.number_input("Age (Year):")
-D3Dimer = st.number_input("D3Dimer (μg/mL):")
-D5Dimer = st.number_input("D5Dimer (μg/mL):")
-FDP = st.number_input("FDP (μg/mL):")
-Lymphocyte = st.number_input("Lymphocyte (10^9/L):")
+D3Dimer = st.number_input("D-dimer(D3) (μg/mL):")
+D5Dimer = st.number_input("D-dimer(D5) (μg/mL):")
+FDP = st.number_input("FDP (mg/mL):")
+Lymphocyte = st.number_input("Lymphocyte count (10^9/L):")
 PLT = st.number_input("PLT (10^9/L):")
-PrevWF = st.number_input("PrevWF (ng/mL):")
-vWFD3 = st.number_input("vWFD3 (ng/mL):")
+PrevWF = st.number_input("Pre-vWF-A2 (pg/mL):")
+vWFD3 = st.number_input("vWF-A2(D3) (ng/mL):")
 Operationtime = st.number_input("Operation time (min):")
-Anticoagulation = st.selectbox('Anticoagulation', ['No', 'Yes'])
+Anticoagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
 Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
 Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
 Differentiation = Differentiationmap[Differentiation]
