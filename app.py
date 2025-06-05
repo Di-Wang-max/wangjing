@@ -8,19 +8,19 @@ from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
 Age = st.number_input("Age (Year):")
-D3Dimer = st.number_input("D-dimer(D3) (μg/mL):")
-D5Dimer = st.number_input("D-dimer(D5) (μg/mL):")
+D-dimer(D3) = st.number_input("D-dimer(D3) (μg/mL):")
+D-dimer(D5) = st.number_input("D-dimer(D5) (μg/mL):")
 FDP = st.number_input("FDP (mg/mL):")
 Lymphocyte = st.number_input("Lymphocyte count (10^9/L):")
 PLT = st.number_input("PLT (10^9/L):")
-PrevWF = st.number_input("Pre-vWF-A2 (pg/mL):")
-vWFD3 = st.number_input("vWF-A2(D3) (pg/mL):")
+Pre-vWF-A2 = st.number_input("Pre-vWF-A2 (pg/mL):")
+vWF-A2(D3) = st.number_input("vWF-A2(D3) (pg/mL):")
 Operationtime = st.number_input("Operation time (min):")
-Anticoagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
+Anti-coagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
 Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
 Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
 Differentiation = Differentiationmap[Differentiation]
-Anticoagulation = 1 if Anticoagulation == 'Yes' else 0
+Anti-coagulation = 1 if Anti-coagulation == 'Yes' else 0
 
 # If button is pressed
 if st.button("Submit"):
@@ -32,19 +32,19 @@ if st.button("Submit"):
     
     
     # Store inputs into dataframe
-    input_numerical = np.array([Age,Anticoagulation,D3Dimer,D5Dimer,Differentiation,FDP,Lymphocyte,Operationtime,PLT,PrevWF,vWFD3]).reshape(1, -1)
-    feature_names  = ["Age", "Anticoagulation", "D3Dimer","D5Dimer","Differentiation","FDP","Lymphocyte","Operationtime","PLT","PrevWF","vWFD3"]
+    input_numerical = np.array([Age,Anti-coagulation,D-dimer(D3),D-dimer(D5),Differentiation,FDP,Lymphocyte,Operationtime,PLT,Pre-vWF-A2,vWF-A2(D3)]).reshape(1, -1)
+    feature_names  = ["Age", "Anti-coagulation", "D-dimer(D3)","D-dimer(D5)","Differentiation","FDP","Lymphocyte","Operationtime","PLT","Pre-vWF-A2","vWF-A2(D3)"]
     input_numericalyuan = pd.DataFrame(input_numerical, columns=feature_names)
     input_numerical = pd.DataFrame(input_numerical, columns=feature_names)
 
-    input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D5Dimer','vWFD3','D3Dimer','PrevWF','Age','PLT','FDP','Lymphocyte','Operationtime']])
+    input_numerical[['D-dimer(D5)','vWF-A2(D3)','D-dimer(D3)','Pre-vWF-A2','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D-dimer(D5)','vWF-A2(D3)','D-dimer(D3)','Pre-vWF-A2','Age','PLT','FDP','Lymphocyte','Operationtime']])
 
 
     prediction_proba = calibrated.predict_proba(input_numerical)[:, 1]
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
     for prob in prediction_proba:
-        st.markdown(f"**{prob:.3f}%**")
+        st.markdown(f"**{prob:.2f}%**")
 
   
     explainer = shap.TreeExplainer(XGB)
