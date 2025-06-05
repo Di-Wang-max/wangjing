@@ -8,19 +8,19 @@ from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
 Age = st.number_input("Age (Year):")
-D_dimer(D3) = st.number_input("D-dimer(D3) (μg/mL):")
-D_dimer(D5) = st.number_input("D-dimer(D5) (μg/mL):")
+D_dimer_D3 = st.number_input("D-dimer(D3) (μg/mL):")
+D_dimer_D5 = st.number_input("D-dimer(D5) (μg/mL):")
 FDP = st.number_input("FDP (mg/mL):")
 Lymphocyte = st.number_input("Lymphocyte count (10^9/L):")
 PLT = st.number_input("PLT (10^9/L):")
 Pre_vWF_A2 = st.number_input("Pre-vWF-A2 (pg/mL):")
-vWF_A2(D3) = st.number_input("vWF-A2(D3) (pg/mL):")
+vWF_A2_D3 = st.number_input("vWF-A2(D3) (pg/mL):")
 Operationtime = st.number_input("Operation time (min):")
 Anti_coagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
 Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
 Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
 Differentiation = Differentiationmap[Differentiation]
-Anti_coagulation = 1 if Anti-coagulation == 'Yes' else 0
+Anti_coagulation = 1 if Anti_coagulation == 'Yes' else 0
 
 # If button is pressed
 if st.button("Submit"):
@@ -32,12 +32,12 @@ if st.button("Submit"):
     
     
     # Store inputs into dataframe
-    input_numerical = np.array([Age,Anti_coagulation,D_dimer(D3),D_dimer(D5),Differentiation,FDP,Lymphocyte,Operationtime,PLT,Pre_vWF_A2,vWF_A2(D3)]).reshape(1, -1)
-    feature_names  = ["Age", "Anti_coagulation", "D_dimer(D3)","D_dimer(D5)","Differentiation","FDP","Lymphocyte","Operationtime","PLT","Pre_vWF_A2","vWF_A2(D3)"]
+    input_numerical = np.array([Age,Anti_coagulation,D_dimer_D3,D_dimer_D5,Differentiation,FDP,Lymphocyte,Operationtime,PLT,Pre_vWF_A2,vWF_A2_D3]).reshape(1, -1)
+    feature_names  = ["Age", "Anti_coagulation", "D_dimer_D3","D_dimer_D5","Differentiation","FDP","Lymphocyte","Operationtime","PLT","Pre_vWF_A2","vWF_A2_D3"]
     input_numericalyuan = pd.DataFrame(input_numerical, columns=feature_names)
     input_numerical = pd.DataFrame(input_numerical, columns=feature_names)
 
-    input_numerical[['D_dimer(D5)','vWF_A2(D3)','D_dimer(D3)','Pre_vWF_A2','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D_dimer(D5)','vWF_A2(D3)','D_dimer(D3)','Pre_vWF_A2','Age','PLT','FDP','Lymphocyte','Operationtime']])
+    input_numerical[['D_dimer_D5','vWF_A2_D3','D_dimer_D3','Pre_vWF_A2','Age','PLT','FDP','Lymphocyte','Operationtime']] = scaler.transform(input_numerical[['D_dimer_D5','vWF_A2_D3','D_dimer_D3','Pre_vWF_A2','Age','PLT','FDP','Lymphocyte','Operationtime']])
 
 
     prediction_proba = calibrated.predict_proba(input_numerical)[:, 1]
