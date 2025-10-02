@@ -7,13 +7,12 @@ import streamlit.components.v1 as components
 from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
-Age = st.number_input("Age (Year):,
+Age = st.number_input("Age (Year):",
     min_value=18,      # 最小值
     max_value=70,      # 最大值
     value=18,          # 默认值（可选，默认为 min_value）
     step=1,            # 步长（可选，默认为 0.01，这里设为 1 以适合整数年龄）
-    help="请输入 18-70 岁之间的年龄"")
-")
+    help="请输入 18-70 岁之间的年龄")
 D_dimer_D3 = st.number_input("D-dimer(D3) (μg/mL):")
 D_dimer_D5 = st.number_input("D-dimer(D5) (μg/mL):")
 FDP = st.number_input("FDP (mg/mL):")
