@@ -16,55 +16,71 @@ Age = st.number_input("Age (Years):",
     step=1,            
     help="Must be 18-85 years")
 if Age < 18 or Age > 85:
-    st.error("Value must be between 18 and 85.")
+    st.error("Value must be between 18 and 85 yesrs.")
 D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):",
-   min_value=0.00,      # 最小值
-    max_value=10.00,      # 最大值
+   #min_value=0.00,      # 最小值
+    #max_value=10.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,            
     help="Must be 0-10 μg/mL")
+if D_dimer_D3 > 10.00:
+    st.error("Value must be between <10μg/mL.")
 D_dimer_D5 = st.number_input("Postoperative Day 5 D-dimer (μg/mL):",
-    min_value=0.00,      # 最小值
-    max_value=10.00,      # 最大值
+    #min_value=0.00,      # 最小值
+    #max_value=10.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,           
     help="Must be 0-10 μg/mL")
+if D_dimer_D5 > 10.00:
+    st.error("Value must be between <10μg/mL.")
 FDP = st.number_input("FDP on POD1 (mg/L):",
-   min_value=0.00,      # 最小值
-    max_value=50.00,      # 最大值
+   #min_value=0.00,      # 最小值
+    #max_value=50.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,           
     help="Must be 0-50 mg/L")
+if FDP > 50.00:
+    st.error("Value must be between <50mg/L.")
 Lymphocyte = st.number_input("Lymphocyte count on POD1 (10^9/L):",
-    min_value=0.00,      # 最小值
-    max_value=4.00,      # 最大值
+    #min_value=0.00,      # 最小值
+    #max_value=4.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,           
     help="Must be 0.0-4.0 (10^9/L)")
+if Lymphocyte > 4.00:
+    st.error("Value must be between <4.0(10^9/L).")
 PLT = st.number_input("PLT on POD1 (10^9/L):",
-    min_value=0.0,      # 最小值
-    max_value=600.0,      # 最大值
+    #min_value=0.0,      # 最小值
+    #max_value=600.0,      # 最大值
     value=0.0,          # 默认值（可选，默认为 min_value）
     step=0.1,            
     help="Must be 0-600 (10^9/L)")
+if PLT > 600.0:
+    st.error("Value must be between <600.0(10^9/L).")
 Pre_vWF_A2 = st.number_input("Preoperative vWF-A2 (pg/mL):",
-    min_value=0.00,      # 最小值
-    max_value=10000.00,      # 最大值
+    #min_value=0.00,      # 最小值
+    #max_value=10000.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,            
     help="Must be 0-10000 pg/mL")
+if Pre_vWF_A2 > 10000.00:
+    st.error("Value must be between <10000pg/mL.")
 vWF_A2_D3 = st.number_input("Postoperative Day 3 vWF-A2 (pg/mL):",
-    min_value=0.00,      # 最小值
-    max_value=10000.00,      # 最大值
+    #min_value=0.00,      # 最小值
+    #max_value=10000.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
     step=0.01,            
     help="Must be 0-10000 pg/mL")
+if vWF_A2_D3 > 10000.00:
+    st.error("Value must be between <10000pg/mL.")
 Operationtime = st.number_input("Operation Time (min):",
-    min_value=30,      # 最小值
-    max_value=300,      # 最大值
+    #min_value=30,      # 最小值
+    #max_value=300,      # 最大值
     value=30,          # 默认值（可选，默认为 min_value）
     step=1,            
     help="Must be 30-300 min")
+if Operationtime < 30 or Operationtime > 300:
+    st.error("Value must be between 30 and 300 min.")
 Anti_coagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
 Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
 Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
