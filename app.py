@@ -10,7 +10,7 @@ st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombo
 if 'age_valid' not in st.session_state:
     st.session_state.age_valid = True
 Age = st.number_input("Age (Years):",
-    min_value=18,      # 最小值
+    #min_value=18,      # 最小值
     #max_value=85,      # 最大值
     value=18,          # 默认值（可选，默认为 min_value）
     step=1,            
