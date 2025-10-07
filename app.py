@@ -89,10 +89,10 @@ if st.button("Submit"):
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
     for prob in prediction_proba:
-    if prob < 1.0:  
-        st.markdown(f"**<1%**")
-    else:
-        st.markdown(f"**{prob:.2f}%**")
+        if prob < 1.0:  
+            st.markdown(f"**<1%**")
+        else:
+            st.markdown(f"**{prob:.2f}%**")
 
   
     explainer = shap.TreeExplainer(XGB)
