@@ -7,20 +7,60 @@ import streamlit.components.v1 as components
 from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
-Age = st.number_input("Age (Year):",
+Age = st.number_input("Age (Years):,
     min_value=18,      # 最小值
-    max_value=70,      # 最大值
+    max_value=85,      # 最大值
     value=18,          # 默认值（可选，默认为 min_value）
-    step=1,            # 步长（可选，默认为 0.01，这里设为 1 以适合整数年龄）
-    help="请输入 18-70 岁之间的年龄")
-D_dimer_D3 = st.number_input("D-dimer(D3) (μg/mL):")
-D_dimer_D5 = st.number_input("D-dimer(D5) (μg/mL):")
-FDP = st.number_input("FDP (mg/mL):")
-Lymphocyte = st.number_input("Lymphocyte count (10^9/L):")
-PLT = st.number_input("PLT (10^9/L):")
-Pre_vWF_A2 = st.number_input("Pre-vWF-A2 (pg/mL):")
-vWF_A2_D3 = st.number_input("vWF-A2(D3) (pg/mL):")
-Operationtime = st.number_input("Operation time (min):")
+    step=1,            
+    help="Must be 18-85 years "")
+D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):,
+   min_value=0,      # 最小值
+    max_value=10,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,            
+    help="Must be 0-10 μg/mL"")
+D_dimer_D5 = st.number_input("Postoperative Day 5 D-dimer (μg/mL):,
+    min_value=0,      # 最小值
+    max_value=10,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,            
+    help="Must be 0-10 μg/mL"")
+FDP = st.number_input("FDP on POD1 (mg/L):,
+    min_value=0,      # 最小值
+    max_value=10,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,            
+    help="Must be 0-10 mg/L"")
+Lymphocyte = st.number_input("Lymphocyte count on POD1 (10^9/L):,
+    min_value=0.5,      # 最小值
+    max_value=4.0,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,           
+    help="Must be 0.5-4.0 (10^9/L)"")
+PLT = st.number_input("PLT on POD1 (10^9/L):,
+    min_value=0,      # 最小值
+    max_value=600,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.1,            
+    help="Must be 0-600 (10^9/L)"")
+Pre_vWF_A2 = st.number_input("Preoperative vWF-A2 (pg/mL):,
+    min_value=0,      # 最小值
+    max_value=10000,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,            
+    help="Must be 0-10000 pg/mL"")
+vWF_A2_D3 = st.number_input("Postoperative Day 3 vWF-A2 (pg/mL):,
+    min_value=0,      # 最小值
+    max_value=10000,      # 最大值
+    value=0,          # 默认值（可选，默认为 min_value）
+    step=0.01,            
+    help="Must be 0-10000 pg/mL"")
+Operationtime = st.number_input("Operation Time (min):,
+    min_value=60,      # 最小值
+    max_value=240,      # 最大值
+    value=60,          # 默认值（可选，默认为 min_value）
+    step=1,            
+    help="Must be 60-240 min"")
 Anti_coagulation = st.selectbox('Anti-coagulation', ['No', 'Yes'])
 Differentiation = st.selectbox('Differentiation', ['poorly',"moderately",'highly'])
 Differentiationmap = {'highly': 0, 'moderately': 1, 'poorly': 2}
@@ -49,6 +89,9 @@ if st.button("Submit"):
     prediction_proba = (prediction_proba * 100).round(2)
     st.markdown("## **Prediction Probabilities (%)**")
     for prob in prediction_proba:
+    if prob < 1.0:  
+        st.markdown(f"**<1%**")
+    else:
         st.markdown(f"**{prob:.2f}%**")
 
   
