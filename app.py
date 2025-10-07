@@ -7,20 +7,14 @@ import streamlit.components.v1 as components
 from sklearn.calibration import CalibratedClassifierCV
 st.markdown('<h2 style="font-size:20px;">XGBoost Model for Postoperative Thrombosis</h2>', unsafe_allow_html=True)
 
+if 'age_valid' not in st.session_state:
+    st.session_state.age_valid = True
 Age = st.number_input("Age (Years):",
     min_value=18,      # 最小值
     max_value=85,      # 最大值
     value=18,          # 默认值（可选，默认为 min_value）
     step=1,            
     help="Must be 18-85 years")
-if Age > 85 or Age < 18:
-    st.session_state.age_valid = False
-    st.error("Value must be between 18 and 85.")
-elif not st.session_state.age_valid:
-    st.session_state.age_valid = True
-    st.success("Valid age selected.")
-else:
-    st.write(f"Selected age: {Age} years")
 D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):",
    min_value=0.00,      # 最小值
     max_value=10.00,      # 最大值
