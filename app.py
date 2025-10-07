@@ -15,6 +15,10 @@ Age = st.number_input("Age (Years):",
     value=18,          # 默认值（可选，默认为 min_value）
     step=1,            
     help="Must be 18-85 years")
+if Age < 18 or Age > 85:
+    st.error("Value must be between 18 and 85.")
+else:
+    st.success(f"Age input accepted: {Age}")
 D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):",
    min_value=0.00,      # 最小值
     max_value=10.00,      # 最大值
