@@ -17,7 +17,7 @@ Age = st.number_input("Age (Years):",
     help="Must be 18-85 years")
 if Age < 18 or Age > 85:
     st.error("Value must be between 18 and 85 yesrs.")
-D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):",
+D_dimer_D3 = st.number_input("D-dimer on Postoperative Day 3 (μg/mL):",
    #min_value=0.00,      # 最小值
     #max_value=10.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
@@ -25,7 +25,7 @@ D_dimer_D3 = st.number_input("Postoperative Day 3 D-dimer (μg/mL):",
     help="Must be 0-10 μg/mL")
 if D_dimer_D3 > 10.00:
     st.error("Value must be between <10μg/mL.")
-D_dimer_D5 = st.number_input("Postoperative Day 5 D-dimer (μg/mL):",
+D_dimer_D5 = st.number_input("D-dimer on Postoperative Day 5 (μg/mL):",
     #min_value=0.00,      # 最小值
     #max_value=10.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
@@ -65,7 +65,7 @@ Pre_vWF_A2 = st.number_input("Preoperative vWF-A2 (pg/mL):",
     help="Must be 0-10000 pg/mL")
 if Pre_vWF_A2 > 10000.00:
     st.error("Value must be between <10000pg/mL.")
-vWF_A2_D3 = st.number_input("Postoperative Day 3 vWF-A2 (pg/mL):",
+vWF_A2_D3 = st.number_input("vWF-A2 on Postoperative Day 3 (pg/mL):",
     #min_value=0.00,      # 最小值
     #max_value=10000.00,      # 最大值
     value=0.00,          # 默认值（可选，默认为 min_value）
