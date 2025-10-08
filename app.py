@@ -76,7 +76,7 @@ if vWF_A2_D3 > 10000.00:
 Operationtime = st.number_input("Operation Time (min):",
     #min_value=60,      # 最小值
     #max_value=240,      # 最大值
-    value=30,          # 默认值（可选，默认为 min_value）
+    value=60,          # 默认值（可选，默认为 min_value）
     step=1,            
     help="Must be 60-240 min")
 if Operationtime < 60 or Operationtime > 240:
