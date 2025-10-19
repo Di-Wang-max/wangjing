@@ -115,8 +115,8 @@ if st.button("Submit"):
             st.markdown(f"**{prob:.2f}%**")
 
   
-    explainer = shap.TreeExplainer(XGB)
-    shap_values = explainer.shap_values(input_numerical)
+     explainer = shap.Explainer(XGB, input_numerical)
+    shap_values = explainer(input_numerical)
     
     st.write("### SHAP Value Force Plot")
     shap.initjs()
